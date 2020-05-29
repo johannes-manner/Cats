@@ -10,6 +10,6 @@ The following resources are available:
 
 To discover the different resources, methods and data schemas use the [Swagger Editor](https://editor.swagger.io/#) and the `openapi.yaml` file.
 
-##Contribute
+## Contribute
 
 If you face any problems or have suggestions to improve the source code, do not hesitate to create a Pull Request or discuss the stuff via our course discussion forum or via issues/mails etc. :)
