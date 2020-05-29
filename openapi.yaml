@@ -1,0 +1,296 @@
+# open api speicification document - header with version
+# document should be named openapi.yaml or openapi.json
+openapi: "3.0.4"
+# general information
+info:
+  title: Cute Cat Service
+  version: "1.0"
+  description: | # | for multi line description
+    In these sad days, we want to build a cute
+    cat service, inspired by [Stefan](https://github.com/stefan-kolb/jaxrs-samples) - a former colleague.
+  contact:
+    name: Johannes Manner
+    url: https://github.com/johannes-manner
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: http://localhost:9999/v1
+    description: Development Server
+# reusable elements within the API specification
+components:
+  # data elements (JSON Schema)
+  schemas:
+    movieDTO:
+      type: object
+      required:
+        - name
+      properties:
+        movieId:
+          type: number
+        name:
+          type: string
+        year:
+          type: number
+        href:
+          type: string
+      xml:
+        name: movie
+    movieShortDTO:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        href:
+          type: string
+      xml:
+        name: movie
+    popularity:
+      type: string
+      enum: [A, B, C]
+    catDTO:
+      type: object
+      required:
+        - name
+        - movies
+        - imageUrl
+      properties:
+        id:
+          type: number
+        popularity:
+          $ref: "#/components/schemas/popularity"
+        name:
+          type: string
+        movies:
+          type: array
+          items:
+            $ref: "#/components/schemas/movieShortDTO"
+        imageUrl:
+          type: string
+        href:
+          type: string
+    catPostDTO:
+      type: object
+      required:
+        - name
+        - movies
+        - imageUrl
+      properties:
+        popularity:
+          $ref: "#/components/schemas/popularity"
+        name:
+          type: string
+        movies:
+          type: array
+          items:
+            $ref: "#/components/schemas/movieDTO"
+        imageUrl:
+          type: string
+    errorMessage:
+      type: object
+      required:
+        - errorType
+      properties:
+        errorType:
+          description: error category, should be extended
+          enum:
+            - INVALID_PARAMETER
+        message:
+          type: string
+          description: A detailed error description
+    pagination:
+      type: object
+      properties:
+        page:
+          type: number
+        noOfPages:
+          type: number
+        first:
+          type: string
+        previous:
+          type: string
+        next:
+          type: string
+        last:
+          type: string
+    paginatedCats:
+      type: object
+      properties:
+        pagination:
+          $ref: "#/components/schemas/pagination"
+        cats:
+          type: array
+          items:
+            $ref: "#/components/schemas/catDTO"
+        href:
+          type: string
+# resources (one of the REST principles)
+paths:
+  /cats:
+    description: A catalog of all cats
+    # Operations/methods via standard HTTP verbs
+    get:
+      summary: Get cats on a specific page
+      # request parameters
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: number
+            default: 1
+        - name: pageLimit
+          in: query
+          schema:
+            type: number
+            default: 10
+      # possible responses and their parameters
+      responses:
+        200:
+          description: Cats on the page
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/paginatedCats"
+        400:
+          description: A bad request initiated by the user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorMessage"
+    post:
+      summary: Creates a cat
+      description: |
+        This is a multiline
+        long description for creating a cat
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/catPostDTO"
+      responses:
+        201:
+          description: Created your cat successfully
+        400:
+          description: Message body was empty
+          content:
+            application/*:
+              schema:
+                $ref: "#/components/schemas/errorMessage"
+  /cats/search:
+    description: A catalog of all cats playing in a movie
+    # Operations/methods via standard HTTP verbs
+    get:
+      summary: Get cats which played in a specific movie
+      # request parameters
+      parameters:
+        - name: movie
+          in: query
+          schema:
+            type: string
+      responses:
+        200:
+          description: Cats playing in that movie
+          content:
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/catDTO"
+  /cats/{catId}:
+    # this parameter definition is valid for all subsequent methods
+    parameters:
+      - name: catId
+        # path parameters must be always mandatory!!
+        required: true
+        in: path
+        schema:
+          type: number
+    put:
+      summary: Update specific cat
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/catPostDTO"
+      responses:
+        200:
+          description: Updating a cat
+          content:
+            application/*:
+              # response schema
+              schema:
+                $ref: "#/components/schemas/catDTO"
+        400:
+          description: Message body was empty
+          content:
+            application/*:
+              schema:
+                $ref: "#/components/schemas/errorMessage"
+        404:
+          description: Not found
+    get:
+      summary: Get a single cats by id
+      responses:
+        200:
+          description: Getting a specific cat's detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/catDTO"
+        404:
+          description: Not found
+    delete:
+      summary: Delete cat
+      responses:
+        200:
+          description: Cat deleted
+        404:
+          description: Cat not found
+  /movies:
+    get:
+      summary: Get all movies (no pagination)
+      responses:
+        200:
+          description: Get all movies without pagination
+          content:
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/movieDTO"
+    post:
+      summary: Create a movie
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/movieDTO"
+      responses:
+        201:
+          description: Movie created
+        400:
+          description: Message body was empty
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorMessage"
+  /movies/{movieId}:
+    get:
+      summary: Get a specific movie
+      parameters:
+        - name: movieId
+          required: true
+          in: path
+          schema:
+            type: number
+      responses:
+        200:
+          description: Movie identified by the id
+          content:
+            application/*:
+              schema:
+                $ref: "#/components/schemas/movieDTO"
+        404:
+          description: Movie not found
