@@ -11,7 +11,7 @@ import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
 public class JaxRsServer {
-    private static Properties properties = Configuration.loadProperties();
+    private static final Properties properties = Configuration.loadProperties();
 
     public static void main(String[] args) throws IOException {
         String serverUri = properties.getProperty("serverUri");
@@ -22,6 +22,7 @@ public class JaxRsServer {
         System.out.println("Server ready to serve your JAX-RS requests...");
         System.out.println("Press any key to exit...");
         System.in.read();
-        server.stop(0);
+        System.out.println("Stopping server");
+        server.stop(1);
     }
 }
