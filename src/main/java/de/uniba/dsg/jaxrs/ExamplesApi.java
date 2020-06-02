@@ -3,6 +3,7 @@ package de.uniba.dsg.jaxrs;
 import de.uniba.dsg.jaxrs.provider.CatMessageBodyWriter;
 import de.uniba.dsg.jaxrs.resources.CatResource;
 import de.uniba.dsg.jaxrs.resources.MovieResource;
+import de.uniba.dsg.jaxrs.resources.SwaggerUI;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.Consumes;
@@ -22,6 +23,8 @@ public class ExamplesApi extends Application {
         // resources
         resources.add(CatResource.class);
         resources.add(MovieResource.class);
+        // swagger-ui
+        resources.add(SwaggerUI.class);
         // providers
         resources.add(CatMessageBodyWriter.class);
 
