@@ -9,7 +9,7 @@ This can be configured via `src/main/resources/config.properties`.
 To discover the different resources, methods and data schemas, have a look at the file `src/main/resources/openapi.yaml` which you can also open in 
 [Swagger Editor](https://editor.swagger.io/#).
 
-In addition, [Swagger UI](https://swagger.io/tools/swagger-ui/) is added to this project and you can access it at: `http://localhost:9999/v1/swagger-ui/index.html?url=openapi.yaml` per default.
+In addition, [Swagger UI](https://swagger.io/tools/swagger-ui/) is added to this project and you can access it at: [`http://localhost:9999/v1/swagger-ui/index.html?url=openapi.yaml`](http://localhost:9999/v1/swagger-ui/index.html?url=openapi.yaml) per default.
 
 ## Contribute
 
