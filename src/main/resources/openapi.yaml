@@ -49,7 +49,7 @@ components:
         name: movie
     popularity:
       type: string
-      enum: [A, B, C]
+      enum: [ A, B, C ]
     catDTO:
       type: object
       required:
@@ -147,13 +147,13 @@ paths:
             default: 10
       # possible responses and their parameters
       responses:
-        200:
+        "200":
           description: Cats on the page
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/paginatedCats"
-        400:
+        "400":
           description: A bad request initiated by the user
           content:
             application/json:
@@ -170,9 +170,9 @@ paths:
             schema:
               $ref: "#/components/schemas/catPostDTO"
       responses:
-        201:
+        "201":
           description: Created your cat successfully
-        400:
+        "400":
           description: Message body was empty
           content:
             application/*:
@@ -190,7 +190,7 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        "200":
           description: Cats playing in that movie
           content:
             application/xml:
@@ -215,44 +215,44 @@ paths:
             schema:
               $ref: "#/components/schemas/catPostDTO"
       responses:
-        200:
+        "200":
           description: Updating a cat
           content:
             application/*:
               # response schema
               schema:
                 $ref: "#/components/schemas/catDTO"
-        400:
+        "400":
           description: Message body was empty
           content:
             application/*:
               schema:
                 $ref: "#/components/schemas/errorMessage"
-        404:
+        "404":
           description: Not found
     get:
       summary: Get a single cats by id
       responses:
-        200:
+        "200":
           description: Getting a specific cat's detail
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/catDTO"
-        404:
+        "404":
           description: Not found
     delete:
       summary: Delete cat
       responses:
-        200:
+        "200":
           description: Cat deleted
-        404:
+        "404":
           description: Cat not found
   /movies:
     get:
       summary: Get all movies (no pagination)
       responses:
-        200:
+        "200":
           description: Get all movies without pagination
           content:
             application/xml:
@@ -268,9 +268,9 @@ paths:
             schema:
               $ref: "#/components/schemas/movieDTO"
       responses:
-        201:
+        "201":
           description: Movie created
-        400:
+        "400":
           description: Message body was empty
           content:
             application/json:
@@ -286,11 +286,11 @@ paths:
           schema:
             type: number
       responses:
-        200:
+        "200":
           description: Movie identified by the id
           content:
             application/*:
               schema:
                 $ref: "#/components/schemas/movieDTO"
-        404:
+        "404":
           description: Movie not found

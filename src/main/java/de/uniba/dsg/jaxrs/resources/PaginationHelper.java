@@ -1,8 +1,8 @@
 package de.uniba.dsg.jaxrs.resources;
 
 import de.uniba.dsg.jaxrs.models.api.Pagination;
+import jakarta.ws.rs.core.UriInfo;
 
-import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
 public class PaginationHelper<T> {

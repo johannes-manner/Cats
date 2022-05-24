@@ -5,9 +5,9 @@ import de.uniba.dsg.jaxrs.models.dto.MovieDTO;
 import de.uniba.dsg.jaxrs.models.error.ErrorMessage;
 import de.uniba.dsg.jaxrs.models.error.ErrorType;
 import de.uniba.dsg.jaxrs.models.logic.Movie;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.*;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.*;
 import java.util.List;
 import java.util.logging.Logger;
 

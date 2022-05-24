@@ -3,9 +3,9 @@ package de.uniba.dsg.jaxrs.models.dto;
 import de.uniba.dsg.jaxrs.models.logic.Cat;
 import de.uniba.dsg.jaxrs.models.logic.Popularity;
 import de.uniba.dsg.jaxrs.resources.CatResource;
+import jakarta.ws.rs.core.UriBuilder;
+import jakarta.xml.bind.annotation.*;
 
-import javax.ws.rs.core.UriBuilder;
-import javax.xml.bind.annotation.*;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;

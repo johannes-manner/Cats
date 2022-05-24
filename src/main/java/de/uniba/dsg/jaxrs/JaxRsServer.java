@@ -1,10 +1,9 @@
 package de.uniba.dsg.jaxrs;
 
+import jakarta.ws.rs.core.UriBuilder;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Properties;
-
-import javax.ws.rs.core.UriBuilder;
 
 import com.sun.net.httpserver.HttpServer;
 import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;

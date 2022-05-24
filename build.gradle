@@ -6,32 +6,33 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '5.2.0'
 }
 
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+sourceCompatibility = '11'
+targetCompatibility = '11'
 
 repositories {
     mavenCentral()
-    jcenter()
 }
 
 def props = new Properties()
 file("src/main/resources/config.properties").withInputStream { props.load(it) }
 
 dependencies {
-    implementation group: 'org.glassfish.jersey.core', name: 'jersey-server', version: '2.31'
-    implementation group: 'org.glassfish.jersey.core', name: 'jersey-client', version: '2.31'
+    def jerseyVersion = '3.1.0-M2'
 
-    implementation group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet', version: '2.31'
-    implementation group: 'org.glassfish.jersey.containers', name: 'jersey-container-jdk-http', version: '2.31'
+    implementation group: 'org.glassfish.jersey.core', name: 'jersey-server', version: "${jerseyVersion}"
+    implementation group: 'org.glassfish.jersey.core', name: 'jersey-client', version: "${jerseyVersion}"
 
-    implementation group: 'org.glassfish.jersey.media', name: 'jersey-media-moxy', version: '2.31'
+    implementation group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet', version: "${jerseyVersion}"
+    implementation group: 'org.glassfish.jersey.containers', name: 'jersey-container-jdk-http', version: "${jerseyVersion}"
+
+    implementation group: 'org.glassfish.jersey.media', name: 'jersey-media-jaxb', version: "${jerseyVersion}"
+    implementation group: 'org.glassfish.jersey.media', name: 'jersey-media-moxy', version: "${jerseyVersion}"
 
     // needed since version 2.26 and newer are not backward compatible
     // https://stackoverflow.com/questions/44088493/jersey-stopped-working-with-injectionmanagerfactory-not-found
-    implementation group: 'org.glassfish.jersey.inject', name: 'jersey-hk2', version: '2.31'
+    implementation group: 'org.glassfish.jersey.inject', name: 'jersey-hk2', version: "${jerseyVersion}"
 
-    implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
-//    testCompile 'org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-inmemory:2.30.1'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:3.0.2'
 
     implementation group: 'org.webjars', name: 'swagger-ui', version: props.getProperty("swaggeruiversion")
 }

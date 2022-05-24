@@ -1,6 +1,6 @@
 package de.uniba.dsg.jaxrs.models.error;
 
-import javax.xml.bind.annotation.XmlEnum;
+import jakarta.xml.bind.annotation.XmlEnum;
 
 @XmlEnum(String.class)
 public enum ErrorType {

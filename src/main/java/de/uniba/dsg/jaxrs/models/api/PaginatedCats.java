@@ -1,9 +1,9 @@
 package de.uniba.dsg.jaxrs.models.api;
 
 import de.uniba.dsg.jaxrs.models.dto.CatDTO;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
 
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 import java.net.URI;
 import java.util.List;
 

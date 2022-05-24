@@ -1,8 +1,9 @@
 package de.uniba.dsg.jaxrs.models.api;
 
-import javax.ws.rs.core.UriBuilder;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import jakarta.ws.rs.core.UriBuilder;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
+
 import java.net.URI;
 
 @XmlRootElement

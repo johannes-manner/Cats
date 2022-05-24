@@ -3,8 +3,8 @@ package de.uniba.dsg.jaxrs.models.dto;
 import de.uniba.dsg.jaxrs.models.logic.Cat;
 import de.uniba.dsg.jaxrs.models.logic.Movie;
 import de.uniba.dsg.jaxrs.models.logic.Popularity;
+import jakarta.xml.bind.annotation.*;
 
-import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
