@@ -1,6 +1,6 @@
 # open api speicification document - header with version
 # document should be named openapi.yaml or openapi.json
-openapi: "3.0.4"
+openapi: "3.0.3"
 # general information
 info:
   title: Cute Cat Service
@@ -159,6 +159,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/errorMessage"
+      tags:
+        - Cat Endpoints
     post:
       summary: Creates a cat
       description: |
@@ -178,6 +180,8 @@ paths:
             application/*:
               schema:
                 $ref: "#/components/schemas/errorMessage"
+      tags:
+        - Cat Endpoints
   /cats/search:
     description: A catalog of all cats playing in a movie
     # Operations/methods via standard HTTP verbs
@@ -198,6 +202,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/catDTO"
+      tags:
+        - Cat Endpoints
   /cats/{catId}:
     # this parameter definition is valid for all subsequent methods
     parameters:
@@ -230,6 +236,8 @@ paths:
                 $ref: "#/components/schemas/errorMessage"
         "404":
           description: Not found
+      tags:
+        - Cat Endpoints
     get:
       summary: Get a single cats by id
       responses:
@@ -241,6 +249,8 @@ paths:
                 $ref: "#/components/schemas/catDTO"
         "404":
           description: Not found
+      tags:
+        - Cat Endpoints
     delete:
       summary: Delete cat
       responses:
@@ -248,6 +258,8 @@ paths:
           description: Cat deleted
         "404":
           description: Cat not found
+      tags:
+        - Cat Endpoints
   /movies:
     get:
       summary: Get all movies (no pagination)
@@ -260,6 +272,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/movieDTO"
+      tags:
+        - Movie Endpoints
     post:
       summary: Create a movie
       requestBody:
@@ -276,6 +290,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/errorMessage"
+      tags:
+        - Movie Endpoints
   /movies/{movieId}:
     get:
       summary: Get a specific movie
@@ -294,3 +310,5 @@ paths:
                 $ref: "#/components/schemas/movieDTO"
         "404":
           description: Movie not found
+      tags:
+        - Movie Endpoints
