@@ -18,7 +18,8 @@ public class JaxRsServer {
         URI baseUri = UriBuilder.fromUri(serverUri).build();
         ResourceConfig config = ResourceConfig.forApplicationClass(ExamplesApi.class);
         HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
-        System.out.println("Server ready to serve your JAX-RS requests...");
+        System.out.println("Server ready to serve your JAX-RS requests at: " + properties.getProperty("serverUri"));
+        System.out.println("Open Swagger UI at: " + properties.getProperty("serverUri") + "/swagger-ui/index.html");
         System.out.println("Press any key to exit...");
         System.in.read();
         System.out.println("Stopping server");
