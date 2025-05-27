@@ -6,8 +6,8 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
-sourceCompatibility = '17'
-targetCompatibility = '17'
+sourceCompatibility = '21'
+targetCompatibility = '21'
 
 repositories {
     mavenCentral()
@@ -17,7 +17,7 @@ def props = new Properties()
 file("src/main/resources/config.properties").withInputStream { props.load(it) }
 
 dependencies {
-    def jerseyVersion = '3.1.1'
+    def jerseyVersion = '3.1.10'
 
     implementation group: 'org.glassfish.jersey.core', name: 'jersey-server', version: "${jerseyVersion}"
     implementation group: 'org.glassfish.jersey.core', name: 'jersey-client', version: "${jerseyVersion}"
@@ -32,7 +32,7 @@ dependencies {
     // https://stackoverflow.com/questions/44088493/jersey-stopped-working-with-injectionmanagerfactory-not-found
     implementation group: 'org.glassfish.jersey.inject', name: 'jersey-hk2', version: "${jerseyVersion}"
 
-    implementation 'org.glassfish.jaxb:jaxb-runtime:4.0.2'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:4.0.5'
 
     implementation group: 'org.webjars', name: 'swagger-ui', version: props.getProperty("swaggeruiversion")
 }
